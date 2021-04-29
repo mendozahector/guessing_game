@@ -13,9 +13,15 @@ import random
 
 def main():
     welcome_message()
-    difficulty = get_difficulty()
-    guesses = start_game(difficulty)
-    print_game_results(guesses)
+    while True:
+        difficulty = get_difficulty()
+        guesses = start_game(difficulty)
+        print_game_results(guesses)
+
+        play_again = input("\nType any key to play again. Otherwise enter \"exit\" to quit game.\n"
+            "> ")
+        if play_again.lower() == "exit":
+            break
 
 # Game introduction
 def welcome_message():
@@ -80,7 +86,7 @@ def print_game_results(guesses):
         print("Amazing! You guessed the number in one go!\n"
         "Your lucky number is:", guesses[0])
     else:
-        print(f"You were able to find the number in {num_guesses}. guess\n"
+        print(f"You were able to find the number in {num_guesses} guesses\n"
         "The numbers you guessed were:", guesses)
 
 if __name__ == "__main__":
