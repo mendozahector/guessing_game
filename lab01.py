@@ -76,7 +76,11 @@ def start_game(difficulty):
 def print_game_results(guesses):
     num_guesses = len(guesses)
 
-    print(f"You were able to find the number in {num_guesses}. guess\n"
+    if num_guesses == 1:
+        print("Amazing! You guessed the number in one go!\n"
+        "Your lucky number is:", guesses[0])
+    else:
+        print(f"You were able to find the number in {num_guesses}. guess\n"
         "The numbers you guessed were:", guesses)
 
 if __name__ == "__main__":
