@@ -14,8 +14,8 @@ import random
 def main():
     welcome_message()
     difficulty = get_difficulty()
-
-    print(f"Guess a number between 1 and {difficulty}")
+    guesses = start_game(difficulty)
+    print_game_results(guesses)
 
 # Game introduction
 def welcome_message():
@@ -24,35 +24,60 @@ def welcome_message():
 
 # Prompt the user for how difficult the game will be. Ask for an integer
 def get_difficulty():
+
     # Let's make sure we actually have an integer
     while True:
         try:
-            integer = int(input("Pick a positive integer (greater than 1): "))
-            if integer > 1:
+            integer = int(input("Pick a positive integer: "))
+            if integer > 0:
                 break
             else:
-                print("Please pick a number greater than 1.")
+                print("Please pick a number greater than zero.")
         except ValueError:
             print("You have entered an invalid integer.")
     
     return integer
 
-# Generate a random number between 1 and the chosen value
-#value_random = random.randint(1, value_max)
-
-# Give the user instructions as to what he or she will be doing
-
-# Initialize the sentinal and the array of guesses
-
 # Play the guessing game
+def start_game(difficulty):
 
-    # Prompt the user for a number
+    # Generate a random number between 1 and the chosen value
+    value_random = random.randint(1, difficulty)
 
-    # Store the number in an array so it can be displayed later
+    # Give the user instructions as to what he or she will be doing
+    print(f"Guess a number between 1 and {difficulty}.")
 
-    # Make a decision: was the guess too high, too low, or just right
+    # Initialize the sentinal and the array of guesses
+    guesses = []
+
+    while True:
+        # Prompt the user for a number
+        try:
+            guess = int(input("> "))
+
+            # Store the number in an array so it can be displayed later
+            guesses.append(guess)
+
+            # Make a decision: was the guess too high, too low, or just right
+            if guess == value_random:
+                break
+            elif guess > value_random:
+                print("\tToo high!")
+            elif guess < value_random:
+                print("\tToo low!")
+
+        # If input is valid we will display an error
+        except ValueError:
+            print("Please enter a valid number.")
+
+    return guesses
 
 # Give the user a report: How many guesses and what the guesses where
+def print_game_results(guesses):
+    num_guesses = len(guesses)
+
+    print(f"You were able to find the number in {num_guesses}. guess\n"
+        "The numbers you guessed were:", guesses)
 
 if __name__ == "__main__":
     main()
