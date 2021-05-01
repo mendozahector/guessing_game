@@ -3,16 +3,28 @@
 # 2. Assignment Name:
 #    Lab 01: Python Review
 # 3. Assignment Description:
-#    -describe what this program is meant to do-
+#    User is asked to enter a number. Then the program computes
+#    a random number between 1 and the specified number.
+#    The user is then asked to guess this random number,
+#    with hints if the input number is "too high" or "too low".
+#    Finally, after correcting guessing the number, the user
+#    is congratulated followed by a display of all of the guesses.
 # 4. What was the hardest part? Be as specific as possible.
-#    -a paragraph or two about how the assignment went for you-
+#    This was a basic assignment to practice Python, and I had no major
+#    difficulties.
+#    What did take sometime was playing around with the while loops, and
+#    also digging a little bit into the Try Except, in order to correctly
+#    handle invalid inputs entered by the user. Hope I implemented them
+#    correctly.
 # 5. How long did it take for you to complete the assignment?
-#    -total time in hours including reading the assignment and submitting the program-  
+#    2 hours.
 
 import random
 
 def main():
     welcome_message()
+
+    # We keep playing until the user exits the game
     while True:
         difficulty = get_difficulty()
         guesses = start_game(difficulty)
@@ -56,6 +68,7 @@ def start_game(difficulty):
     # Initialize the sentinal and the array of guesses
     guesses = []
 
+    # We make sure the user enters a valid input
     while True:
         # Prompt the user for a number
         try:
@@ -82,6 +95,7 @@ def start_game(difficulty):
 def print_game_results(guesses):
     num_guesses = len(guesses)
 
+    # We display the correct message, according to the number of guesses
     if num_guesses == 1:
         print("Amazing! You guessed the number in one go!\n"
         "Your lucky number is:", guesses[0])
